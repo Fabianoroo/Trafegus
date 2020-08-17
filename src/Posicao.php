@@ -106,17 +106,12 @@ class Posicao extends Trafegus {
     }
 
 
-    /**
-     * @return mixed
-     * @throws \Exception
-     */
     public function create(){
-        var_dump(json_encode($this->posicoes));echo "<br>";echo "<br>";die;
-        if($this->posicoes && !empty($this->posicoes)){
-
+        $response = false;
+        if($this->posicoes){
+            $CURL = new CURL();
+            $response = $CURL->Open($this->host,$this->auth, $this->posicoes,'listaPosicao');
         }
-        $CURL = new CURL();
-        $response = $CURL->Open($this->host,$this->auth, $this->posicao,'posicao');
         return $response;
     }
 }
