@@ -1,7 +1,7 @@
 {
   "name": "fabianoroo/trafegus",
   "license": "MIT",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "authors": [
     {
       "name": "Fabianoroo",
@@ -9,7 +9,8 @@
     }
   ],
   "require": {
-    "php": ">=7.2.0"
+    "php": ">=7.2.0",
+    "ext-json": "*"
   },
   "autoload" : {
     "psr-4": {
