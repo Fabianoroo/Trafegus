@@ -114,4 +114,8 @@ class Posicao extends Trafegus {
         }
         return $response;
     }
+
+    public function debug($JSON = true){
+        return $JSON ? json_encode($this->posicoes) : $this->posicoes;
+    }
 }
