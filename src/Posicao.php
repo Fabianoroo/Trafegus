@@ -112,6 +112,7 @@ class Posicao extends Trafegus {
             $CURL = new CURL();
             $response = $CURL->Open($this->host,$this->auth, $this->posicoes,'listaPosicao');
         }
+        unset($this->posicoes);
         return $response;
     }
 
