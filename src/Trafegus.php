@@ -14,13 +14,5 @@ abstract class Trafegus{
         $this->host = $host;
         $this->auth = $key;
     }
-
-    //__get() é utilizado para ler dados de propriedades inacessíveis.
-//    public function __get($field)
-//    {
-//        if (isset($this->$field))
-//            return $this->$field;
-//    }
-
 }
 
