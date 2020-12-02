@@ -16,6 +16,11 @@ class Terminal extends Trafegus {
         $this->terminal = new \stdClass();
     }
 
+    /**
+     * @param String
+     * Identificador único do aparelho
+     * @return $this
+     */
     public function setIdentificador($identificador){
         if(isset($identificador)){
             $this->terminal->identificador = $identificador;
@@ -23,13 +28,22 @@ class Terminal extends Trafegus {
         return $this;
     }
 
+    /**
+     * @param String
+     * Código da versão da tecnologia
+     * @return $this
+     */
     public function setTecnologia($tecnologia){
         if(isset($tecnologia)){
             $this->terminal->versao_tecnologia = $tecnologia;
         }
         return $this;
     }
-    //OneSignal
+    /**
+     * @param String
+     * Token para envio de notificação (OneSignal)
+     * @return $this
+     */
     public function setToken($playerID){
         if(isset($playerID)){
             $this->terminal->token = $playerID;
@@ -37,6 +51,11 @@ class Terminal extends Trafegus {
         return $this;
     }
 
+    /**
+     * @param String
+     * Realiza o envio das informações para cadastro do aparelho
+     * @return \stdClass
+     */
     public function create(){
         $this->fields = $this->terminal;
         $CURL = new CURL();
