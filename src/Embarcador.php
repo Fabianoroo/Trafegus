@@ -19,8 +19,7 @@ class Embarcador extends Trafegus {
         $this->embarcador = new stdClass();
     }
     /**
-     * @param String
-     * CNPJ do Embarcador [OBS: deve ser enviado sem formatação]
+     * @param String $cnpj_embarcador CNPJ do Embarcador
      * @return $this
      */
     public function setCnpj($cnpj_embarcador){
@@ -31,8 +30,7 @@ class Embarcador extends Trafegus {
     }
 
     /**
-     * @param String
-     * CNPJ Nome do Embarcador
+     * @param String $nome * CNPJ Nome do Embarcador
      * @return $this
      */
     public function setNome($nome){
@@ -43,8 +41,7 @@ class Embarcador extends Trafegus {
     }
 
     /**
-     * @param String
-     * CNPJ Razão social do Embarcador
+     * @param String $razao_social * CNPJ Razão social do Embarcador
      * @return $this
      */
     public function setRazaoSocial($razao_social){
@@ -55,8 +52,7 @@ class Embarcador extends Trafegus {
     }
 
     /**
-     * @param String
-     * Inscricao estadual do Embarcador
+     * @param String $ie * Inscricao estadual do Embarcador
      * @return $this
      */
     public function setIE($IE){
@@ -67,8 +63,7 @@ class Embarcador extends Trafegus {
     }
 
     /**
-     * @param String
-     * Descrição do Logradouro
+     * @param String $logradouro * Descrição do Logradouro
      * @return $this
      */
     public function setLogradouro($logradouro){
@@ -79,8 +74,7 @@ class Embarcador extends Trafegus {
     }
 
     /**
-     * @param String
-     * CEP do Logradouro
+     * @param String $cep * CEP do Logradouro
      * @return $this
      */
     public function setCEP($cep){
@@ -91,8 +85,7 @@ class Embarcador extends Trafegus {
     }
 
     /**
-     * @param String
-     * Número do Logradouro
+     * @param String $numero * Número do Logradouro
      * @return $this
      */
     public function setNumero($numero){
@@ -103,8 +96,7 @@ class Embarcador extends Trafegus {
     }
 
     /**
-     * @param String
-     * Descrição do Bairro do Logradouro
+     * @param String $complemento * Descrição do Bairro do Logradouro
      * @return $this
      */
     public function setComplemento($complemento){
@@ -115,8 +107,7 @@ class Embarcador extends Trafegus {
     }
 
     /**
-     * @param String
-     * Descrição do Bairro do Logradouro
+     * @param String $bairro * Descrição do Bairro do Logradouro
      * @return $this
      */
     public function setBairro($bairro){
@@ -127,8 +118,7 @@ class Embarcador extends Trafegus {
     }
 
     /**
-     * @param String
-     * Cidade da origem ou código do IBGE (conforme tabela padrão do IBGE)
+     * @param String $cidade * Cidade da origem ou código do IBGE (conforme tabela padrão do IBGE)
      * @return $this
      */
     public function setCidade($cidade){
@@ -139,24 +129,20 @@ class Embarcador extends Trafegus {
     }
 
     /**
-     * @param String
-     * CNPJ da matriz do Embarcador
+     * @param String $cnpj_matriz * CNPJ da matriz do Embarcador
      * @return $this
      */
-    public function setDocumentoMatriz($doc_matriz){
-        if(isset($doc_matriz)){
-            $this->embarcador->cnpj_matriz = $doc_matriz;
+    public function setDocumentoMatriz($cnpj_matriz){
+        if(isset($cnpj_matriz)){
+            $this->embarcador->cnpj_matriz = $cnpj_matriz;
         }
         return $this;
     }
 
     /**
-     * @param String
-     * Se
+     * @param String $senha
      * @return $this
      */
-    //PORQUE NO REQUEST ESTÁ SENDO ENVIADO SENHA, SENDO QUE ATÉ O MOMENTO
-    //O EMBARCADOR É UMA EMPRESA
     public function setSenha($senha){
         if(isset($senha)){
             $this->embarcador->senha = $senha;
@@ -165,8 +151,7 @@ class Embarcador extends Trafegus {
     }
 
     /**
-     * @param String
-     * Utiliza roterização automática na SM (0 não, 1 sim)
+     * @param String $roteiriza_automatico_sm * Utiliza roterização automática na SM (0 não, 1 sim)
      * @return $this
      */
     public function setRoteirizao($roteiriza_automatico_sm){
@@ -177,9 +162,7 @@ class Embarcador extends Trafegus {
     }
 
     /**
-     * @param String
-     * Associar motoristas automáticamente ao Transportador da SM (0 não, 1 sim).
-     * Informar "1" por padrão.
+     * @param String $associa_motorista_sm * Associar motoristas automáticamente ao Transportador da SM (0 não, 1 sim).
      * @return $this
      */
     public function setAssociaMotoristaSM($associa_motorista_sm){
@@ -190,9 +173,7 @@ class Embarcador extends Trafegus {
     }
 
     /**
-     * @param String
-     * Associar veiculos automáticamente ao Transportador da SM (0 não, 1 sim).
-     * Informar "1" por padrão.
+     * @param String $associa_veiculo_sm * Associar veiculos automáticamente ao Transportador da SM (0 não, 1 sim).
      * @return $this
      */
     public function setAssociaVeiculoSM($associa_veiculo_sm){
@@ -203,8 +184,7 @@ class Embarcador extends Trafegus {
     }
 
     /**
-     * @param String
-     * Estação de rastreamento do Embarcador
+     * @param String $estacao_rastreamento_padrao * Estação de rastreamento do Embarcador
      * @return $this
      */
     public function setEstacaoRastreamentoPadrao($estacao_rastreamento_padrao){
@@ -230,6 +210,9 @@ class Embarcador extends Trafegus {
         }
     }
 
+    /**
+     * @return Object
+     */
     public function create(){
         $this->fields['embarcador'][] = $this->embarcador;
         $CURL = new CURL();

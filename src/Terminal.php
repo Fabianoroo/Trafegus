@@ -17,8 +17,7 @@ class Terminal extends Trafegus {
     }
 
     /**
-     * @param String
-     * Identificador único do aparelho
+     * @param $identificador String Identificador único do aparelho
      * @return $this
      */
     public function setIdentificador($identificador){
@@ -29,19 +28,17 @@ class Terminal extends Trafegus {
     }
 
     /**
-     * @param String
-     * Código da versão da tecnologia
+     * @param $versao_tecnologia String Código da versão da tecnologia
      * @return $this
      */
-    public function setTecnologia($tecnologia){
-        if(isset($tecnologia)){
-            $this->terminal->versao_tecnologia = $tecnologia;
+    public function setTecnologia($versao_tecnologia){
+        if(isset($versao_tecnologia)){
+            $this->terminal->versao_tecnologia = $versao_tecnologia;
         }
         return $this;
     }
     /**
-     * @param String
-     * Token para envio de notificação (OneSignal)
+     * @param $playerID String Token para envio de notificação (OneSignal)
      * @return $this
      */
     public function setToken($playerID){
@@ -52,7 +49,6 @@ class Terminal extends Trafegus {
     }
 
     /**
-     * @param String
      * Realiza o envio das informações para cadastro do aparelho
      * @return \stdClass
      */

@@ -24,7 +24,7 @@ $terminal->setIdentificador('A465DF897ADF6A5')
 
 $retorno = $terminal->create();
 
-print_r(json_encode($retorno));
+print_r(json_encode($retorno->response));
 
 ```
 
