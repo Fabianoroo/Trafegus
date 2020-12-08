@@ -253,4 +253,10 @@ class Transportador extends Trafegus
         $response = $CURL->Open($this->host,$this->auth, $this->transportadores,'transportador');
         return $response;
     }
+
+    public static function getTransportador($host, $auth, $doc){
+        $CURL = new CURL();
+        $response = $CURL->Open($host,$auth,null,"transportador/{$doc}", 'GET');
+        return $response;
+    }
 }
