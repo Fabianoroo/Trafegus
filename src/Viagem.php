@@ -312,7 +312,6 @@ class Viagem extends Trafegus {
 
     /**
      * @param $viagemID
-
      */
 
     /**
