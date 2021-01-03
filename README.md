@@ -1,5 +1,7 @@
-# Trafegus
+# Trafegus 
 Lib para Integração com API REST do sistema Trafegus a partir da versão 44.
+
+<img src="https://img.shields.io/packagist/dt/fabianoroo/trafegus">
 
 Utilizando a biblioteca
 
