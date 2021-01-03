@@ -309,4 +309,33 @@ class Viagem extends Trafegus {
             return $response;
         }
     }
+
+    /**
+     * @param $viagemID
+
+     */
+
+    /**
+     * @param $viagemID String Código da viagem
+     * @return \stdClass
+     * @throws \Exception
+     */
+    public function getViagem($viagemID){
+        if(isset($viagemID)){
+            $CURL = new CURL();
+            return $response = $CURL->Open($this->host,$this->auth, null,"viagem/{$viagemID}",'GET');
+        }
+    }
+
+    /**
+     * @param $viagemID String Para consultar um pacote de viagens adicione o ultimo código recebico UltCodigo
+     * @return \stdClass
+     * @throws \Exception
+     */
+    public function getViagens($viagemID){
+        if(isset($viagemID)){
+            $CURL = new CURL();
+            return $response = $CURL->Open($this->host,$this->auth, null,"viagem?UltCodigo={$viagemID}",'GET');
+        }
+    }
 }
