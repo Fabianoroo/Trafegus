@@ -78,4 +78,12 @@ class Veiculo extends Trafegus {
         $response = $CURL->Open($this->host,$this->auth, $this->fields,'veiculo');
         return $response;
     }
+
+    public function getVeiculo($placa){
+        if(isset($placa) || is_string($placa)){
+            $CURL = new CURL();
+            $response = $CURL->Open($this->host,$this->auth, null,"veiculo/{$placa}",'GET');
+            return $response;
+        }
+    }
 }
