@@ -315,7 +315,8 @@ class Viagem extends Trafegus {
      */
 
     /**
-     * @param $viagemID String Código da viagem
+     * Para consultar uma viagem em especifico
+     * @param $viagemID String
      * @return \stdClass
      * @throws \Exception
      */
@@ -327,7 +328,8 @@ class Viagem extends Trafegus {
     }
 
     /**
-     * @param $viagemID String Para consultar um pacote de viagens adicione o ultimo código recebico UltCodigo
+     * Para consultar um pacote de viagens adicione o ultimo código recebico $viagemID
+     * @param $viagemID String
      * @return \stdClass
      * @throws \Exception
      */
@@ -335,6 +337,47 @@ class Viagem extends Trafegus {
         if(isset($viagemID)){
             $CURL = new CURL();
             return $response = $CURL->Open($this->host,$this->auth, null,"viagem?UltCodigo={$viagemID}",'GET');
+        }
+    }
+
+    /**
+     * Para consultar as viagens Iniciadas entre um perodo de datas, ser necessario inforar os valores nos
+     * parametros DataInicioI (data de inicio da busca) e DataInicioF (data de fim da busca)
+     * @param $dataInicioI String
+     * @param $dataInicioF String
+     * @return \stdClass
+     * @throws \Exception
+     */
+    public function getViagensPeriodo($dataInicioI, $dataInicioF){
+        if(isset($dataInicioI) && isset($dataInicioF)){
+            $CURL = new CURL();
+            return $response = $CURL->Open($this->host,$this->auth, null,"viagem?DataInicioI={$dataInicioI}&DataInicioF={$dataInicioF}",'GET');
+        }
+    }
+
+    /**
+     * Para consultar as viagens finalizadas em uma data adicionar o valor do dia desejado no parametro DataFinalizacao
+     * @param $dataFinalizacao String
+     * @return \stdClass
+     * @throws \Exception
+     */
+    public function getViagensDataFinalizacao($dataFinalizacao){
+        if(isset($dataFinalizacao)){
+            $CURL = new CURL();
+            return $response = $CURL->Open($this->host,$this->auth, null,"viagem?DataFinalizacao={$dataFinalizacao}",'GET');
+        }
+    }
+
+    /**
+     * Para consultar as viagens Iniciadas em uma Data, ser necessrio inforar os valores nos parametros DataEfetivacao
+     * @param $dataEfetivacao String
+     * @return \stdClass
+     * @throws \Exception
+     */
+    public function getViagensDataEfetivacao($dataEfetivacao){
+        if(isset($dataEfetivacao)){
+            $CURL = new CURL();
+            return $response = $CURL->Open($this->host,$this->auth, null,"viagem?DataEfetivacao={$dataEfetivacao}",'GET');
         }
     }
 }
