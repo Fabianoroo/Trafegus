@@ -342,15 +342,20 @@ class Viagem extends Trafegus {
 
     /**
      * Para consultar as viagens Iniciadas entre um perodo de datas, ser necessario inforar os valores nos
-     * parametros DataInicioI (data de inicio da busca) e DataInicioF (data de fim da busca)
+     * parametros DataInicioI (data de inicio da busca) e DataInicioF (data de fim da busca).
+     * Utilizar o parâmetro UltCodigo (código da viagem), para realizar a busca entre datas a partir de uma determinada viagem
      * @param $dataInicioI String
      * @param $dataInicioF String
+     * @param $UltCodigo String
      * @return \stdClass
      * @throws \Exception
      */
-    public function getViagensPeriodo($dataInicioI, $dataInicioF){
+    public function getViagensPeriodo($dataInicioI, $dataInicioF, $UltCodigo = null){
         if(isset($dataInicioI) && isset($dataInicioF)){
             $CURL = new CURL();
+            if(isset($UltCodigo)){
+                return $response = $CURL->Open($this->host,$this->auth, null,"viagem?DataInicioI={$dataInicioI}&DataInicioF={$dataInicioF}&UltCodigo={$UltCodigo}",'GET');
+            }
             return $response = $CURL->Open($this->host,$this->auth, null,"viagem?DataInicioI={$dataInicioI}&DataInicioF={$dataInicioF}",'GET');
         }
     }
