@@ -45,4 +45,20 @@ trait traitParametros{
             }
         }
     }
+
+    public function updateStatusViagem($newStatus){
+        if($newStatus){
+            switch ($newStatus) {
+                case 'efetivada':
+                    return 1;
+                case 'cancelada':
+                    return 2;
+                case 'finalizada':
+                    return 5;
+                default:
+                    throw new \Exception('Status inválido!');
+
+            }
+        }
+    }
 }

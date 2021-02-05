@@ -19,6 +19,8 @@ class Viagem extends Trafegus {
     private $local;
     private $conhecimentos = array();
 
+    use traitParametros;
+
     public function __construct($host, $key)
     {
         parent::__construct($host, $key);
@@ -383,6 +385,24 @@ class Viagem extends Trafegus {
         if(isset($dataEfetivacao)){
             $CURL = new CURL();
             return $response = $CURL->Open($this->host,$this->auth, null,"viagem?DataEfetivacao={$dataEfetivacao}",'GET');
+        }
+    }
+
+    /**
+     * Altera o status da viagem no Trafegus
+     * @param $newStatus String Parametros aceitos, 'efetivada', 'cancelada', 'finalizada'
+     * @param $viagemID String ID da viagem Trafegus
+     * @return \stdClass
+     * @throws \Exception
+     */
+    public function setStatusViagem($newStatus, $viagemID){
+        if(isset($newStatus) && !is_numeric($newStatus)){
+            $status = self::updateStatusViagem($newStatus);
+            if($status){
+                $data['status_viagem']['id_novo_status'] = $status;
+                $CURL = new CURL();
+                return $response = $CURL->Open($this->host,$this->auth, $data,"viagem/{$viagemID}",'PUT');
+            }
         }
     }
 }
