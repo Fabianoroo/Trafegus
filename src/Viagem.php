@@ -405,4 +405,15 @@ class Viagem extends Trafegus {
             }
         }
     }
+
+    /**
+     * @param String $observacoes Observao da viagem.
+     * @return $this
+     */
+    public function setObservacoes($observacao){
+        if(isset($observacao)){
+            $this->viagem->viag_observacao = $observacao;
+        }
+        return $this;
+    }
 }
