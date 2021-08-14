@@ -13,6 +13,7 @@ class Viagem extends Trafegus {
     private $veiculos;
     private $motoristas;
     private $terminal;
+    private $terminais;
     private $origem;
     private $destino;
     private $locais = array();
@@ -28,6 +29,7 @@ class Viagem extends Trafegus {
         $this->veiculos = new \stdClass();
         $this->motoristas = new \stdClass();
         $this->terminal = new \stdClass();
+        $this->terminais = array();
         $this->conhecimentos = new \stdClass();
         $this->origem = new \stdClass();
         $this->destino = new \stdClass();
@@ -238,6 +240,17 @@ class Viagem extends Trafegus {
         return $this;
     }
 
+    /**
+     * Quando está função é chamado, setTerminalTecnologia e setTerminalNumero serão ignoradas
+     */
+    public function addTerminal($term_numero_terminal, $tecn_tecnologia){
+        $term = new \stdClass();
+        $term->term_numero_terminal = $term_numero_terminal;
+        $term->tecn_tecnologia = $tecn_tecnologia;
+        array_push($this->terminais, $term);
+        return $this;
+    }
+
     public function setPrevisaoInicio($viag_previsao_inicio){
         if(isset($viag_previsao_inicio)){
             $this->viagem->viag_previsao_inicio = $viag_previsao_inicio;
@@ -276,9 +289,10 @@ class Viagem extends Trafegus {
         $this->viagem->veiculos[] = $this->veiculos;
         $this->viagem->motoristas[] = $this->motoristas;
         (!empty((array)$this->terminal)) ? $this->viagem->terminais[] = $this->terminal : NULL;
-
+        if(!empty($this->terminais))
+            $this->viagem->terminais = $this->terminais;
+            
         $debug['viagem'][] = $this->viagem;
-
         return $debug;
     }
 
@@ -288,6 +302,8 @@ class Viagem extends Trafegus {
             $this->viagem->veiculos[] = $this->veiculos;
             $this->viagem->motoristas[] = $this->motoristas;
             (!empty((array)$this->terminal)) ? $this->viagem->terminais[] = $this->terminal : NULL;
+            if(!empty($this->terminais))
+                $this->viagem->terminais = $this->terminais;
 
             $this->fields['viagem'][] = $this->viagem;
             $CURL = new CURL();
