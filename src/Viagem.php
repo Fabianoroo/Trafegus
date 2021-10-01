@@ -106,6 +106,18 @@ class Viagem extends Trafegus {
     }
 
     /**
+     * @param String $documento CNPJ / CPF do Embarcador. Tamanho máximo: 30
+     * @return $this
+     */
+    public function setDocumentoEmbarcador($documento_embarcador){
+        if(isset($documento_embarcador)){
+            $this->viagem->cnpj_emba = $documento_embarcador;
+        }
+        return $this;
+    }
+
+
+    /**
      * @param String $placa Placa dos veículos da viagem. Tamanho máximo: 10
      * @return $this
      */
