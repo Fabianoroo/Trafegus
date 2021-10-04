@@ -10,7 +10,8 @@ class Viagem extends Trafegus {
     private $fields = array();
 
     private $viagem;
-    private $veiculos;
+    private $veiculo;
+    private $veiculos = array();
     private $motoristas;
     private $terminal;
     private $terminais;
@@ -26,7 +27,7 @@ class Viagem extends Trafegus {
     {
         parent::__construct($host, $key);
         $this->viagem = new \stdClass();
-        $this->veiculos = new \stdClass();
+        $this->veiculo = new \stdClass();
         $this->motoristas = new \stdClass();
         $this->terminal = new \stdClass();
         $this->terminais = array();
@@ -123,7 +124,21 @@ class Viagem extends Trafegus {
      */
     public function setVeiculosPlaca($placa){
         if(isset($placa)){
-            $this->veiculos->placa = $placa;
+            $this->veiculo->placa = $placa;
+        }
+        return $this;
+    }
+
+    /**
+     * @param String $placa Preenche o array veiculos com as placas dos veículos da viagem. 
+     * Tamanho máximo: 10
+     * @return $this
+     * Caso seja utilizado, sobrescreve o método SetVeiculosPlaca
+     */
+    public function addVeiculosPlaca($placa)
+    {
+        if(isset($placa)){
+            array_push($this->veiculos, ['placa' => $placa]);
         }
         return $this;
     }
@@ -297,8 +312,10 @@ class Viagem extends Trafegus {
 //        (!empty((array)$this->transportador)) ? $motorista->transportador[] = $this->transportador : NULL ;
 //        $debug['motorista'][] = $motorista;
 
-
-        $this->viagem->veiculos[] = $this->veiculos;
+        if(!empty($this->veiculos))
+            $this->viagem->veiculos = $this->veiculos;
+        else
+            $this->viagem->veiculos[] = $this->veiculo;
         $this->viagem->motoristas[] = $this->motoristas;
         (!empty((array)$this->terminal)) ? $this->viagem->terminais[] = $this->terminal : NULL;
         if(!empty($this->terminais))
@@ -311,7 +328,10 @@ class Viagem extends Trafegus {
     public function create(){
 
         try{
-            $this->viagem->veiculos[] = $this->veiculos;
+            if(!empty($this->veiculos))
+                $this->viagem->veiculos = $this->veiculos;
+            else
+                $this->viagem->veiculos[] = $this->veiculo;
             $this->viagem->motoristas[] = $this->motoristas;
             (!empty((array)$this->terminal)) ? $this->viagem->terminais[] = $this->terminal : NULL;
             if(!empty($this->terminais))
@@ -329,7 +349,10 @@ class Viagem extends Trafegus {
 
     public function update($viagemID){
         if(isset($viagemID)){
-            $this->viagem->veiculos[] = $this->veiculos;
+            if(!empty($this->veiculos))
+                $this->viagem->veiculos = $this->veiculos;
+            else
+                $this->viagem->veiculos[] = $this->veiculo;
             $this->viagem->motoristas[] = $this->motoristas;
             (!empty((array)$this->terminal)) ? $this->viagem->terminais[] = $this->terminal : NULL;
 
