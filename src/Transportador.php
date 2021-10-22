@@ -249,8 +249,12 @@ class Transportador extends Trafegus
      * @return \stdClass
      */
     public function create(){
+        if(!empty($this->transportadores))
+            $this->fields = $this->transportadores;
+        else
+            $this->fields['transportador'][] = $this->transportador;
         $CURL = new CURL();
-        $response = $CURL->Open($this->host,$this->auth, $this->transportadores,'transportador');
+        $response = $CURL->Open($this->host,$this->auth, $this->fields,'transportador');
         return $response;
     }
 
