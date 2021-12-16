@@ -72,6 +72,13 @@ class Veiculo extends Trafegus {
         return $this;
     }
 
+    public function setProprietario($proprietario) {
+        if(isset($proprietario)) {
+            $this->veiculo->documento_proprietario = $proprietario;
+        }
+        return $this;
+    }
+
     public function create(){
         $this->fields['veiculo'][] = $this->veiculo;
         $CURL = new CURL();
