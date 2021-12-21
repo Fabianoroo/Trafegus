@@ -467,4 +467,15 @@ class Viagem extends Trafegus {
         }
         return $this;
     }
+
+    /**
+     * @param String $descricaoCarga descrição da carga
+     * @return $this
+     */
+    public function setDescricaoCarga($descricaoCarga){
+        if(isset($descricaoCarga)){
+            $this->viagem->viag_descricao_carga = $descricaoCarga;
+        }
+        return $this;
+    }
 }
