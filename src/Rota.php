@@ -36,6 +36,16 @@ class Rota extends Trafegus{
         return $this;
     }
 
+    /**
+     * @param $documento_dono Documento do dono da rota.
+     * @return $this
+     */
+    public function setDono($documento_dono){
+        if($documento_dono){
+            $this->rota->documento_dono = $documento_dono;
+        }
+        return $this;
+    }
 
     /**
      * @param String $descricao_local Descrição do local. String(200)
