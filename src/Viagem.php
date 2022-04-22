@@ -356,9 +356,8 @@ class Viagem extends Trafegus {
             $this->viagem->motoristas[] = $this->motoristas;
             (!empty((array)$this->terminal)) ? $this->viagem->terminais[] = $this->terminal : NULL;
 
-            $this->fields['viagem'][] = $this->viagem;
             $CURL = new CURL();
-            $response = $CURL->Open($this->host,$this->auth, $this->fields,"viagem/{$viagemID}",'PUT');
+            $response = $CURL->Open($this->host,$this->auth, $this->viagem,"viagem/{$viagemID}",'PUT');
             return $response;
         }
     }
